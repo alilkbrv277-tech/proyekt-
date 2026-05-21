@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Fraud Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>ATM Fraud Detection System</h1>
+
+        <form action="/predict" method="POST">
+
+            <input
+                type="number"
+                step="1"
+                name="transaction_amount"
+                placeholder="Transaction Amount"
+                required
+            >
+
+            <input
+                type="number"
+                step="1"
+                name="account_balance"
+                placeholder="Account Balance"
+                required
+            >
+
+            <input
+                type="number"
+                name="login_attempts"
+                placeholder="Login Attempts"
+                required
+            >
+
+            <input
+                type="number"
+                step="1"
+                name="transaction_duration"
+                placeholder="Transaction Duration"
+                required
+            >
+
+            <button type="submit">
+                Check Transaction
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
